@@ -1,0 +1,15 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <div><h1>{{ student.name }}</h1></div>
+    <div>
+        <p>
+            Description:
+        </p>
+        <p>
+            {{ student.description }}
+        </p>
+    </div>
+
+{% endblock %}
+
