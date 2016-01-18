@@ -15,7 +15,7 @@ class StudentRepository extends \Doctrine\ORM\EntityRepository
         $this->getEntityManager()->getConnection()->getConfiguration()->setSQLLogger(null);
         $queryBuilder = $this->getEntityManager()->getRepository('AppBundle:Student')->createQueryBuilder('a');
 
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery()->iterate();
     }
 
 }

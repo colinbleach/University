@@ -29,8 +29,7 @@ class DefaultServiceTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             ['colin bleach','colin_bleach'],
-            ['colin bleach','colin_bleach_1'],
-            ['Colin bleach','colin_bleach_2'],
+            ['Colin bleach','colin_bleach'],
             ['colin bl?each','colin_bl_each'],
 
         );

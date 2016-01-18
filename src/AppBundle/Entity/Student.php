@@ -38,7 +38,7 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255, unique=true)
+     * @ORM\Column(name="path", type="string", length=255, unique=true, nullable=true)
      */
     private $path;
 

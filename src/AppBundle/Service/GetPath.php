@@ -16,7 +16,7 @@ class GetPath
         $name = strtolower(str_replace(' ', '_', $student->getName()));
         $name = preg_replace('/[^A-Za-z0-9\-]/', '_', $name);
 
-        if (array_key_exists($name, $this->completed)) {
+        if (isset($this->completed[$name])) {
             $this->completed[$name]++;
             $name = $name . '_' . $this->completed[$name];
         } else {

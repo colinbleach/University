@@ -5,4 +5,4 @@ parameters:
 
 services:
   get.path:
-    class: 'AppBundle\Service\Path'
+    class: 'AppBundle\Service\GetPath'

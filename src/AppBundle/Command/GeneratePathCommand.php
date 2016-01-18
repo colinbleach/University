@@ -2,6 +2,8 @@
 
 namespace AppBundle\Command;
 
+use Doctrine\Tests\Common\Collections\ArrayCollectionTest;
+use Proxies\__CG__\AppBundle\Entity\Student;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,7 +22,7 @@ class GeneratePathCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $startTime = microtime(true);
-        $batchSize = 15000;
+        $batchSize = 1000;
 
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
@@ -29,20 +31,20 @@ class GeneratePathCommand extends ContainerAwareCommand
         $students = $repository->getStudents();
 
         $i = 0;
-        foreach($students as $key=>$student)
+        while (($row = $students->next()) !== false)
         {
+            $student = $row[0];
             $student->setPath($this->getContainer()->get('get.path')->getPath($student));
+            $i++;
 
-            if($i % $batchSize == 0)
+            if($i % $batchSize === 0)
             {
-                echo memory_get_usage()/1048576 . 'MB';
+                echo memory_get_usage() / 1048576 . 'MB';
                 echo("\r\n");
                 $em->flush();
                 $em->clear();
                 gc_collect_cycles();
             }
-
-            $i++;
         }
 
         $em->flush();
